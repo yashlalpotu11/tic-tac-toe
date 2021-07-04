@@ -1,7 +1,4 @@
 import React, { useState } from "react";
-import Emoji from "./Emoji";
-// import logo from '../img/icon.png';
-// import icon from '../img/icon.svg';
 import { BsPerson } from "react-icons/bs";
 
 const Modal = () => {
@@ -37,10 +34,7 @@ const Modal = () => {
               {" "}
               <span className="primary-text">Hola amigos</span> , If you found
               any issues regarding this app or anything. You can mail me
-              <span className="font-weight-bold">
-                {" "}
-                <Emoji symbol="📧" label="mail" /> 2019bpr050@sggs.ac.in
-              </span>
+              <span className="font-weight-bold"> 2019bpr050@sggs.ac.in</span>
             </p>
           </div>
         </div>

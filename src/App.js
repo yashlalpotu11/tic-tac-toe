@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Card, CardBody, Container, Button, Col, Row } from "reactstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import Modal from "./components/Modal";
 
 const itemArray = new Array(9).fill("empty");
 
@@ -100,46 +101,49 @@ const App = () => {
   };
 
   return (
-    <Container className="p-5">
-      <div className="heading">
-        <h1>TIC-TAC-TOE</h1>
-      </div>
-      <hr className="line" />
-      <ToastContainer position="bottom-center" />
-      <Row>
-        <Col md={6} className="offset-md-3">
-          {winMsg ? (
-            <div className="md-2 mt-2 text-center">
-              <h1 className="text-white p-3 bg-secondary text-uppercase text-center">
-                {winMsg}
+    <>
+      <Modal />
+      <Container className="pt-2 px-4">
+        <div className="heading">
+          <h1>TIC-TAC-TOE</h1>
+        </div>
+        <hr className="line" />
+        <ToastContainer position="bottom-center" />
+        <Row>
+          <Col md={6} className="offset-md-3">
+            {winMsg ? (
+              <div className="md-2 mt-2 text-center">
+                <h1 className="text-white p-3 bg-success text-uppercase text-center">
+                  {winMsg}
+                </h1>
+                <Button
+                  color=""
+                  className="mb-3 mt-1 btn-primary"
+                  block
+                  onClick={relodeGame}
+                >
+                  Reload The Game
+                </Button>
+                <br />
+              </div>
+            ) : (
+              <h1 className="text-center turn bg-secondary">
+                {isCross ? "Cross" : "Circle"} Turn
               </h1>
-              <Button
-                color=""
-                className="mb-3 mt-1 btn-primary"
-                block
-                onClick={relodeGame}
-              >
-                Reload The Game
-              </Button>
-              <br />
+            )}
+            <div className="grid">
+              {itemArray.map((item, index) => (
+                <Card onClick={() => changeItem(index)}>
+                  <CardBody className="box">
+                    <Icon name={item} />
+                  </CardBody>
+                </Card>
+              ))}
             </div>
-          ) : (
-            <h1 className="text-center turn bg-secondary">
-              {isCross ? "Cross" : "Circle"} Turn
-            </h1>
-          )}
-          <div className="grid">
-            {itemArray.map((item, index) => (
-              <Card onClick={() => changeItem(index)}>
-                <CardBody className="box">
-                  <Icon name={item} />
-                </CardBody>
-              </Card>
-            ))}
-          </div>
-        </Col>
-      </Row>
-    </Container>
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 export default App;
